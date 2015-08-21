@@ -1,0 +1,268 @@
+############################################################
+#                         _ooOoo_                          #
+#                        o8888888o                         #
+#                        88" . "88                         #
+#                        (| -_- |)                         #
+#                         O\ = /O                          #
+#                     ____/`---'\____                      #
+#                   .   ' \\| |// `.                       #
+#                    / \\||| : |||// \                     #
+#                  / _||||| -:- |||||- \                   #
+#                    | | \\\ - /// | |                     #
+#                  | \_| ''\---/'' | |                     #
+#                   \ .-\__ `-` ___/-. /                   #
+#                ___`. .' /--.--\ `. . __                  #
+#             ."" '< `.____<|>_/___.' >'"".                #
+#            | | : `- \`.;` _ /`;.`/ - ` : | |             #
+#              \ \ `-. \_ __\ /__ _/ .-` / /               #
+#      ======`-.____`-.___\_____/___.-`____.-'======       #
+#                         `=---='                          #
+#                                                          #
+#      .............................................       #
+#             Buddha bless me, No bug forever              #
+#                                                          #
+############################################################
+# Author       : ZhuHaiWen                                 #
+# Email        : zhuhw@ihep.ac.cn/zhwren0211@whu.edu.cn    #
+# Last modified: 2015-08-21 10:17                          #
+# Filename     : main.mac                                  #
+# Phone Number : 18627814293                               #
+# Discription  :                                           #
+############################################################
+##                                                        ##
+##                   Visualization                        ##
+##                                                        ##
+############################################################
+/vis/open                                   OGLSQt
+/vis/viewer/reset
+/vis/viewer/set/viewpointThetaPhi           0 0
+/vis/viewer/zoom 1
+/vis/viewer/set/style                       surface
+/vis/drawVolume
+/tracking/storeTrajectory                   1
+/vis/scene/endOfEventAction                 accumulate
+/vis/viewer/update
+############################################################
+##                                                        ##
+##                        Wrold                           ##
+##                                                        ##
+############################################################
+/gate/geometry/setMaterialDatabase          GateMaterials.db
+/gate/world/geometry/setXLength             100 cm
+/gate/world/geometry/setYLength             100 cm
+/gate/world/geometry/setZLength             100 cm
+/gate/world/setMaterial                     Air
+/gate/world/vis/forceWireframe
+############################################################
+##                                                        ##
+##                     Detector Tub                       ##
+##                                                        ##
+############################################################
+/gate/world/daughters/name                  detector_tub
+/gate/world/daughters/insert                cylinder
+/gate/detector_tub/placement/setTranslation -240 0 0 mm
+/gate/detector_tub/setMaterial              Air
+/gate/detector_tub/geometry/setRmax         450 mm
+/gate/detector_tub/geometry/setRmin         430 mm
+/gate/detector_tub/geometry/setHeight       40  mm
+/gate/detector_tub/geometry/setPhiStart     -40 deg
+/gate/detector_tub/geometry/setDeltaPhi     80 deg
+/gate/detector_tub/vis/setColor             blue
+/gate/detector_tub/vis/forceWireframe
+############################################################
+##                                                        ##
+##                     Detector Box                       ##
+##                                                        ##
+############################################################
+/gate/detector_tub/daughters/name           detector_box
+/gate/detector_tub/daughters/insert         box
+/gate/detector_box/placement/setTranslation 440.85 0 0 mm
+/gate/detector_box/geometry/setXLength      1.7 mm
+/gate/detector_box/geometry/setYLength      25.784 mm
+/gate/detector_box/geometry/setZLength      33.255 mm
+/gate/detector_box/setMaterial              Air
+/gate/detector_box/vis/setColor             blue
+/gate/detector_box/repeaters/insert         ring
+/gate/detector_box/ring/setRepeatNumber     21
+/gate/detector_box/ring/setFirstAngle       -38.3 deg
+/gate/detector_box/ring/setAngularSpan      76.6 deg
+############################################################
+##                                                        ##
+##              Detector Line First && End                ##
+##                                                        ##
+############################################################
+/gate/detector_box/daughters/name           detector_line_1
+/gate/detector_box/daughters/insert         box
+/gate/detector_line_1/placement/setTranslation -0.15 12.36475 0 mm
+/gate/detector_line_1/setMaterial           Air
+/gate/detector_line_1/geometry/setXLength   1.4 mm
+/gate/detector_line_1/geometry/setYLength   0.8845 mm
+/gate/detector_line_1/geometry/setZLength   33.085 mm
+/gate/detector_line_1/vis/setColor          yellow
+/gate/detector_line_1/vis/forceWireframe
+/gate/detector_line_1/repeaters/insert      linear
+/gate/detector_line_1/linear/setRepeatNumber 2
+/gate/detector_line_1/linear/setRepeatVector 0 -24.7295 0 mm
+/gate/detector_line_1/linear/autoCenter      false
+############################################################
+##                                                        ##
+##           Detector Line1/Row First && End              ##
+##                                                        ##
+############################################################
+/gate/detector_line_1/daughters/name        detector_row_1_1
+/gate/detector_line_1/daughters/insert      box
+/gate/detector_row_1_1/placement/setTranslation 0 0 16.2925 mm
+/gate/detector_row_1_1/setMaterial          Air
+/gate/detector_row_1_1/geometry/setXLength  1.4 mm
+/gate/detector_row_1_1/geometry/setYLength  0.8845 mm
+/gate/detector_row_1_1/geometry/setZLength  0.5 mm
+/gate/detector_row_1_1/vis/setColor         yellow
+/gate/detector_row_1_1/repeaters/insert     linear
+/gate/detector_row_1_1/linear/setRepeatNumber 2
+/gate/detector_row_1_1/linear/setRepeatVector 0 0 -32.585 mm
+/gate/detector_row_1_1/linear/autoCenter    false
+############################################################
+##                                                        ##
+##             Detector Line1/Rows Sub Middle             ##
+##                                                        ##
+############################################################
+/gate/detector_line_1/daughters/name        detector_row_1_s
+/gate/detector_line_1/daughters/insert      box
+/gate/detector_row_1_s/placement/setTranslation 0 0 15 mm
+/gate/detector_row_1_s/geometry/setXLength  1.4 mm
+/gate/detector_row_1_s/geometry/setYLength  0.8845 mm
+/gate/detector_row_1_s/geometry/setZLength  1.915 mm
+/gate/detector_row_1_s/vis/setColor         yellow
+/gate/detector_row_1_s/repeaters/insert     linear
+/gate/detector_row_1_s/linear/setRepeatNumber 4
+/gate/detector_row_1_s/linear/setRepeatVector 0 0 -2 mm
+/gate/detector_row_1_s/linear/autoCenter    false
+/gate/detector_line_1/daughters/name        detector_row_1_s1
+/gate/detector_line_1/daughters/insert      box
+/gate/detector_row_1_s1/placement/setTranslation 0 0 -15 mm
+/gate/detector_row_1_s1/geometry/setXLength 1.4 mm
+/gate/detector_row_1_s1/geometry/setYLength 0.8845 mm
+/gate/detector_row_1_s1/geometry/setZLength 1.915 mm
+/gate/detector_row_1_s1/vis/setColor        yellow
+/gate/detector_row_1_s1/repeaters/insert    linear
+/gate/detector_row_1_s1/linear/setRepeatNumber 4
+/gate/detector_row_1_s1/linear/setRepeatVector 0 0 2 mm
+/gate/detector_row_1_s1/linear/autoCenter   false
+############################################################
+##                                                        ##
+##                Detector Line1/Rows Middle              ##
+##                                                        ##
+############################################################
+/gate/detector_line_1/daughters/name        detector_row_1_m
+/gate/detector_line_1/daughters/insert      box
+/gate/detector_row_1_m/placement/setTranslation 0 0 7.5 mm
+/gate/detector_row_1_m/geometry/setXLength  1.4 mm
+/gate/detector_row_1_m/geometry/setYLength  0.8845 mm
+/gate/detector_row_1_m/geometry/setZLength  0.915 mm
+/gate/detector_row_1_m/setMaterial          Air
+/gate/detector_row_1_m/vis/setColor         yellow
+/gate/detector_row_1_m/repeaters/insert     linear
+/gate/detector_row_1_m/linear/setRepeatNumber 16
+/gate/detector_row_1_m/linear/setRepeatVector 0 0 -1 mm
+/gate/detector_row_1_m/linear/autoCenter    false
+############################################################
+##                                                        ##
+##                 Detector Lines Middle                  ##
+##                                                        ##
+############################################################
+/gate/detector_box/daughters/name           detector_line_m
+/gate/detector_box/daughters/insert         box
+/gate/detector_line_m/placement/setTranslation -0.15 11.34 0 mm
+/gate/detector_line_m/setMaterial           Air
+/gate/detector_line_m/geometry/setXLength   1.4 mm
+/gate/detector_line_m/geometry/setYLength   0.995 mm
+/gate/detector_line_m/geometry/setZLength   33.085 mm
+/gate/detector_line_m/vis/setColor          yellow
+/gate/detector_line_m/vis/forceWireframe
+/gate/detector_line_m/repeaters/insert      linear
+/gate/detector_line_m/linear/setRepeatNumber 22
+/gate/detector_line_m/linear/setRepeatVector 0 -1.08 0 mm
+/gate/detector_line_m/linear/autoCenter      false
+############################################################
+##                                                        ##
+##        Detector Line Middle/Row First && End           ##
+##                                                        ##
+############################################################
+/gate/detector_line_m/daughters/name        detector_row_m_1
+/gate/detector_line_m/daughters/insert      box
+/gate/detector_row_m_1/placement/setTranslation 0 0 16.2925 mm
+/gate/detector_row_m_1/setMaterial          Air
+/gate/detector_row_m_1/geometry/setXLength  1.4 mm
+/gate/detector_row_m_1/geometry/setYLength  0.995 mm
+/gate/detector_row_m_1/geometry/setZLength  0.5 mm
+/gate/detector_row_m_1/vis/setColor         yellow
+/gate/detector_row_m_1/repeaters/insert     linear
+/gate/detector_row_m_1/linear/setRepeatNumber 2
+/gate/detector_row_m_1/linear/setRepeatVector 0 0 -32.585 mm
+/gate/detector_row_m_1/linear/autoCenter    false
+
+############################################################
+##                                                        ##
+##        Detector Line Middle/Rows Sub Middle            ##
+##                                                        ##
+############################################################
+/gate/detector_line_m/daughters/name        detector_row_m_s
+/gate/detector_line_m/daughters/insert      box
+/gate/detector_row_m_s/placement/setTranslation 0 0 15 mm
+/gate/detector_row_m_s/geometry/setXLength  1.4 mm
+/gate/detector_row_m_s/geometry/setYLength  0.995 mm
+/gate/detector_row_m_s/geometry/setZLength  1.915 mm
+/gate/detector_row_m_s/vis/setColor         yellow
+/gate/detector_row_m_s/repeaters/insert     linear
+/gate/detector_row_m_s/linear/setRepeatNumber 4
+/gate/detector_row_m_s/linear/setRepeatVector 0 0 -2 mm
+/gate/detector_row_m_s/linear/autoCenter    false
+/gate/detector_line_m/daughters/name        detector_row_m_s1
+/gate/detector_line_m/daughters/insert      box
+/gate/detector_row_m_s1/placement/setTranslation 0 0 -15 mm
+/gate/detector_row_m_s1/geometry/setXLength 1.4 mm
+/gate/detector_row_m_s1/geometry/setYLength 0.995 mm
+/gate/detector_row_m_s1/geometry/setZLength 1.915 mm
+/gate/detector_row_m_s1/vis/setColor        yellow
+/gate/detector_row_m_s1/repeaters/insert    linear
+/gate/detector_row_m_s1/linear/setRepeatNumber 4
+/gate/detector_row_m_s1/linear/setRepeatVector 0 0 2 mm
+/gate/detector_row_m_s1/linear/autoCenter   false
+############################################################
+##                                                        ##
+##          Detector Line Middle/Rows Sub Middle          ##
+##                                                        ##
+############################################################
+/gate/detector_line_m/daughters/name        detector_row_m_m
+/gate/detector_line_m/daughters/insert      box
+/gate/detector_row_m_m/placement/setTranslation 0 0 7.5 mm
+/gate/detector_row_m_m/geometry/setXLength  1.4 mm
+/gate/detector_row_m_m/geometry/setYLength  0.995 mm
+/gate/detector_row_m_m/geometry/setZLength  0.915 mm
+/gate/detector_row_m_m/setMaterial          Air
+/gate/detector_row_m_m/vis/setColor         yellow
+/gate/detector_row_m_m/repeaters/insert     linear
+/gate/detector_row_m_m/linear/setRepeatNumber 16
+/gate/detector_row_m_m/linear/setRepeatVector 0 0 -1 mm
+/gate/detector_row_m_m/linear/autoCenter    false
+############################################################
+##                                                        ##
+##                       Target                           ##
+##                                                        ##
+############################################################
+/gate/world/daughters/name                  targetholder
+/gate/world/daughters/insert                cylinder
+/gate/targetholder/geometry/setRmax         101 mm
+/gate/targetholder/geometry/setRmin         0   mm
+/gate/targetholder/geometry/setHeight       202 mm
+/gate/targetholder/setMaterial              Water
+/gate/targetholder/vis/forceWireframe
+/gate/targetholder/daughters/name           target
+/gate/targetholder/daughters/insert         cylinder
+/gate/target/geometry/setRmax               100 mm
+/gate/target/geometry/setRmin               0   mm
+/gate/target/geometry/setHeight             200 mm
+/gate/target/setMaterial                    Water
+/gate/target/vis/setColor                   red
+
+/gate/run/initialize
